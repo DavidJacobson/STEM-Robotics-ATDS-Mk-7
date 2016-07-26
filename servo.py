@@ -7,13 +7,26 @@ class Servo:
 		GPIO.setup(pin_number, GPIO.OUT)
 		self.p = GPIO.PWM(pin_number, 50)
 		self.p.start(7.5)
-	def turn(self):
-		while True:	
-			print "maybe now"
-			self.p.ChangeDutyCycle(7.5)
+	def sweep(self):
+		while True:
+			self.p.ChangeDutyCycle(7.5)	
 			time.sleep(1)
-			print "make it stop"
-			self.p.ChangeDutyCycle(2.5)
-			time.sleep(1)
+
+        def turn(self):
+                while True:     
+                	for dc in range(0, 101, 5):
+            			self.p.ChangeDutyCycle(dc)
+            			time.sleep(0.1)
+        		for dc in range(100, -1, -5):
+            			self.p.ChangeDutyCycle(dc)
+            			time.sleep(0.1)
+
+
 	def stop(self):
 		self.p.stop()
+
+
+if __name__ == '__main__':
+	GPIO.setmode(GPIO.BOARD) 
+	x = Servo(7)
+	x.turn()
