@@ -36,8 +36,10 @@ class Sonic:
 		  distance = round(distance, 2)            #Round to two decimal points
 
 		  if distance > 2 and distance < 400:      #Check whether the distance is within range
+			print "[!] Object {} CM away".format(distance)
 			return distance - 0.5  #Print distance with 0.5 cm calibration
 		  else:
+			print "[*] No object found"
 			return None                   #display out of range
 
 

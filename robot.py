@@ -19,16 +19,21 @@ GPIO.setwarnings(False)
 class Robot:
 	def __init__(self, name):
 		self.name = name
-		self.sonic_sensor_servo = Servo(7)
+		self.sonic_sensor_servo = Servo(7, "Sonic Servo")
 		self.seven_seg_one = Display(SDI=11, RCLK=12, SRCLK=13)
 		self.seven_seg_two = Display(SDI=33, RCLK=32, SRCLK=35)
-		self.turret_servo = Servo(5)
+		self.turret_servo = Servo(5, "Turret Servo")
 		self.sonic = Sonic(16, 18)
+	
+		self.current_degree = 0
+		self.servos = [self.sonic_sensor_servo, self.turret_servo]
 
-	def stop(self):
-		self.sonic_sensor_servo.stop()
 
-
+	def zero_servos(self):
+		print "[*]Calibrating"
+		self.sonic_sensor_servo.turn(0, 2)
+		self.turret_servo.turn(0, 2)
+		print "[*]Done"
 	def output_value(self, number):
 		number = str(number)
 		if len(number) == 2:
@@ -39,15 +44,24 @@ class Robot:
 			self.seven_seg_one.disp_val(0)
                         self.seven_seg_two.disp_val(int(number[0]))
 		else:
-			print "NOT A 1 OR 2 DIGIT NUMBER"
+			print "[-] Attempted to print non-two-digit number: {}".format(number)
 
+	def main(self):
+		"""This is to be the main method. It will do the following:
+		(1) Rotate the main servo in 20 degree segments
+		(2) Stops and scans for an object
+		(3) If an object exists, goes into "Firing Mode" -- TODO
+		(4) If not, continues on
+		(5) Once it hits 180, it should reverse down to 0
+		"""
+		pass
 
 ##Main
 try:
 	reggie = Robot('reggie')
-	for each in range(100):
-		time.sleep(1)
-		print reggie.sonic.get_dist()	
+	reggie.zero_servos()
+#	for each in [180, 0, 180, 0, 180]:
+#		 reggie.sonic_sensor_servo.turn(each)
+#		 reggie.turret_servo.turn(each)
 except KeyboardInterrupt:
-	reggie.stop()
 	GPIO.cleanup()
