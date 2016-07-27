@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import time
 from servo import Servo
 from display import Display
-
+from sonic import Sonic
 
 #Setup
 GPIO.setmode(GPIO.BOARD)
@@ -22,6 +22,9 @@ class Robot:
 		self.sonic_sensor_servo = Servo(7)
 		self.seven_seg_one = Display(SDI=11, RCLK=12, SRCLK=13)
 		self.seven_seg_two = Display(SDI=33, RCLK=32, SRCLK=35)
+		self.turret_servo = Servo(5)
+		self.sonic = Sonic(16, 18)
+
 	def stop(self):
 		self.sonic_sensor_servo.stop()
 
@@ -42,10 +45,9 @@ class Robot:
 ##Main
 try:
 	reggie = Robot('reggie')
-	#reggie.sonic_sensor_servo.turn()
-	for each in range(1, 100):
-		reggie.output_value(each)
-	
+	for each in range(100):
+		time.sleep(1)
+		print reggie.sonic.get_dist()	
 except KeyboardInterrupt:
 	reggie.stop()
 	GPIO.cleanup()
