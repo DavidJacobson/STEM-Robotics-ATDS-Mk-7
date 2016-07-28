@@ -35,7 +35,7 @@ class Robot:
 	
 		self.servos = [self.sonic_sensor_servo, self.turret_servo]
  
-		self.motor = Motor(21, 26, 29)
+		self.motor = Motor(37, 38, 40)
 	def zero_servos(self):
 		print "[*]Calibrating"
 		self.sonic_sensor_servo.turn(0, 2)
@@ -84,11 +84,10 @@ try:
 	with open("welcome", "r") as welcome_file:
 		print welcome_file.read()
 	reggie = Robot('reggie', 100)
-#	reggie.zero_servos()
-#	reggie.main()
-	for each in range(100): reggie.output_value(each)
-#	reggie.motor.turn_on()
-	time.sleep(1)
+
+#	for each in range(100): reggie.output_value(each)
+	reggie.motor.turn_on()
+#	time.sleep(1)
 #	reggie.motor.turn_off()
 except KeyboardInterrupt:
 	GPIO.cleanup()

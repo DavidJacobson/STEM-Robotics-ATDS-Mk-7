@@ -13,10 +13,10 @@ class Motor:
 		GPIO.setup(pin1, GPIO.OUT)
 		GPIO.setup(pin2, GPIO.OUT)
 		GPIO.setup(pin3, GPIO.OUT)
-	def turn_on(self, wait_time=1):
+	def turn_on(self, wait_time=10):
 		GPIO.output(self.pin1, GPIO.HIGH)
-		GPIO.output(self.pin2, GPIO.LOW)
-		GPIO.output(self.pin3, GPIO.HIGH)
+		GPIO.output(self.pin2, GPIO.HIGH)
+		GPIO.output(self.pin3, GPIO.LOW)
 		time.sleep(wait_time)
 	def turn_off(self, wait_time=1):
 		GPIO.output(self.pin3, GPIO.LOW)
