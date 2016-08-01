@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import time
 from servo import Servo
 from display import Display
-from sonic import Sonic
+#from sonic import Sonic
 from motor import Motor
 
 
@@ -28,15 +28,16 @@ class Robot:
 		self.seven_seg_one = Display(SDI=11, RCLK=12, SRCLK=13)
 		self.seven_seg_two = Display(SDI=33, RCLK=32, SRCLK=35)
 		
-		self.x_axis = Servo(5, "X Axis")
-                self.y_axis = Servo(7, "Y Axis")
+		self.x_axis = Servo(29, "X Axis")
+		self.y_axis = Servo(31, "Y Axis")		
+
 		
-		self.sonic = Sonic(16, 18)
+		#self.sonic = Sonic(16, 18)
 	
 		self.servos = [self.x_axis, self.y_axis]
  
 		self.motor = Motor(37, 38, 40)
-	def zero_servos(self):
+	def calibrate(self):
 		print "[*]Calibrating"
 		self.x_axis.turn(180, 2)
 		self.y_axis.turn(180, 2)
@@ -61,25 +62,7 @@ class Robot:
 		(4) If not, continues on
 		(5) Once it hits 180, it should reverse down to 0
 		"""
-		#TODO change this to a gen
-		while True:		
-			for deg in self.degrees:
-				self.turret_servo.turn(deg, 1)
-				x = self.sonic.get_dist()
-				if x != None:
-					
-					# TODO Go into fire() from here
-					#return
-					pass
-
-			for deg in range(0, 101, 10)[::-1]: # Now we reverse
-				self.turret_servo.turn(deg, 1)
-				x = self.sonic.get_dist()
-                                if x != None:
-
-                                        # TODO Go into fire() from here
-                                        #return
-					pass
+		for deg in range(0, 101, 10): self.x_axis.turn(deg)
 
 
 ##Main
@@ -87,11 +70,10 @@ try:
 	with open("welcome", "r") as welcome_file:
 		print welcome_file.read()
 	reggie = Robot('reggie', 100)
-	reggie.zero_servos()
-#	reggie.main()
-#	for each in range(100): reggie.output_value(each)
-#	reggie.motor.turn_on()
-#	time.sleep(1)
-#	reggie.motor.turn_off()
+	reggie.calibrate()
+	while True:
+		reggie.main()
+	GPIO.cleanup()
 except KeyboardInterrupt:
 	GPIO.cleanup()
+	print "[*]Cleanup Successful"
