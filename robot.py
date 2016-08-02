@@ -9,7 +9,7 @@ from servo import Servo
 from display import Display
 #from sonic import Sonic
 from motor import Motor
-
+import serial
 
 #Setup
 GPIO.setmode(GPIO.BOARD)
@@ -24,12 +24,16 @@ class Robot:
 		self.current_degree = 0
 		self.ammunition_count = ammo
 		self.degrees = range(0, 101, 10)
-		
+		self.serial_connection =  serial.Serial("/dev/ttyACM0", 9600)
+	
+
+
+	
 		self.seven_seg_one = Display(SDI=11, RCLK=12, SRCLK=13)
 		self.seven_seg_two = Display(SDI=33, RCLK=32, SRCLK=35)
 		
-		self.x_axis = Servo(29, "X Axis")
-		self.y_axis = Servo(31, "Y Axis")		
+		self.x_axis = Servo(0, "X Axis", self.serial_connection)
+		self.y_axis = Servo(1, "Y Axis", self.serial_connection)		
 
 		
 		#self.sonic = Sonic(16, 18)
@@ -39,8 +43,8 @@ class Robot:
 		self.motor = Motor(37, 38, 40)
 	def calibrate(self):
 		print "[*]Calibrating"
-		self.x_axis.turn(180, 2)
-		self.y_axis.turn(180, 2)
+		self.x_axis.turn(0, 2)
+		self.y_axis.turn(0, 2)
 		print "[*]Done"
 	def output_value(self, number):
 		number = str(number)
