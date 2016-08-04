@@ -17,11 +17,11 @@ class Sonic:
 		while True:
 
 		  GPIO.output(self.TRIGGER, False)                 #Set TRIG as LOW
-		  print "Waitng For Sensor To Settle"
+		  #print "Waitng For Sensor To Settle"
 		  time.sleep(1)                            #Delay of 2 seconds
 
 		  GPIO.output(self.TRIGGER, True)                  #Set self.TRIGGER as HIGH
-		  time.sleep(0.00001)                      #Delay of 0.00001 seconds
+		  time.sleep(0.0001)                      #Delay of 0.00001 seconds
 		  GPIO.output(self.TRIGGER, False)                 #Set self.TRIGGER as LOW
 
 		  while GPIO.input(self.ECHO)==0:               #Check whether the self.ECHO is LOW
