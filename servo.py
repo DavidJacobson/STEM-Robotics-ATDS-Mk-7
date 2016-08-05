@@ -10,12 +10,8 @@ class Servo:
         
 	def turn(self, ang=180, wait_time=0.5):
 		print "[*]Turning {} deg on pin {}".format(ang, self.pin_number)
-#		print "[*] Turning {} deg on servo {}, PIN:  {}, DC: {}".format(ang, self.name, self.pin_number)
-		self.parent.serial_connection.write("{},{}\n".format(self.pin_number,ang))
-		self.parent.serial_connection.flushOutput()
-#		print "{},{}\n".format(self.pin_number,ang)
-#		x = self.serial.readline()
-#		print x
+		self.parent.serial_connection.write("{},{}".format(self.pin_number,ang))
+		self.parent.serial_connection.flushOutput() # Need this 
 		time.sleep(wait_time)
 	def rel_pell(self):
 		self.turn(20, 0.5)
