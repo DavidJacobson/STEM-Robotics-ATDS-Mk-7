@@ -1,28 +1,19 @@
-/* Sweep
- by BARRAGAN <http://barraganstudio.com>
- This example code is in the public domain.
-
- modified 8 Nov 2013
- by Scott Fitzgerald
- http://www.arduino.cc/en/Tutorial/Sweep
+/* Reggie servo control and serial parse
+Credit to: Scott Fitzgerald for the Servo control aspect of this 
 */
-
 #include <Servo.h>
 
 Servo x_axis;  // create servo object to control a servo
 Servo y_axis; 
 Servo pellet;
-int serv_num;
-int ang;
-// twelve servo objects can be created on most boards
-
-int pos = 0;    // variable to store the servo position
+int serv_num; // 0 - x axis 1 - y-axis 2-pellet_release. Not the actual pins used, easier to track like this. Use any PWM pins
+int ang;      // angle to be passed via serial
 
 void setup() {
-  x_axis.attach(9);
+  x_axis.attach(9); // actual pwm pins 
   y_axis.attach(11);
   pellet.attach(12);
-  Serial.begin(9600);
+  Serial.begin(9600); // usb
 
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
@@ -32,15 +23,15 @@ void setup() {
 
 void loop() {
 
-  while (Serial.available()==0) {             //Wait for user input
+  while (Serial.available()==0) {             //Wait for serial
 
   }
 
-  String serv = Serial.readStringUntil(',');
+  String serv = Serial.readStringUntil(','); // this gives the first half of the comma delimited data 
   serv_num = serv.toInt();
   ang = Serial.parseInt();
-  Serial.println(serv);
-  Serial.println(ang);
+  Serial.println(serv); // For debugging via Arduino IDE
+  Serial.println(ang); // do NOT attempt to run Arduino serial monitor while python has control of the serial... it will crash...
   if (serv_num==0){
       x_axis.write(ang);
     }
@@ -50,6 +41,6 @@ void loop() {
    else if (serv_num==2){
      pellet.write(ang);
     }
-  delay(15);
+  delay(15); // good practice 
 }
 
