@@ -72,19 +72,23 @@ class Robot:
 		(4) If not, continues on
 		(5) Once it hits 180, it should reverse down to 0
 		"""
-		for deg in range(0, 181, 10):
-			self.x_axis.turn(deg, 0.005)
-			ob_pres = self.sonic.get_dist()
-			if not (ob_pres is None):
-				self.y_axis.turn(30)
-				print "[!]Preparing to Fire"
-				self.motor.fire()
-				self.y_axis.turn(90)
-		#for deg in range(0,181, 10)[::-1]:
-	#		self.x_axis.turn(deg, 0.005)
-	#		ob_pres = self.sonic.get_dist()
-#			if not (ob_pres is None):
-#				print '[!]Preparing to Fire' 
+		while True:
+			for deg in range(0, 181, 10):
+				self.x_axis.turn(deg, 0.005)
+				ob_pres = self.sonic.get_dist()
+				if not (ob_pres is None):
+					self.y_axis.turn(30)
+					print "[!]Preparing to Fire"
+					self.motor.fire()
+					self.y_axis.turn(90)
+			for deg in range(0,181, 10)[::-1]:
+				self.x_axis.turn(deg, 0.005)
+				ob_pres = self.sonic.get_dist()
+				if not (ob_pres is None):
+					self.y_axis.turn(30)
+					print "[!]Preparing to Fire"
+					self.motor.fire()
+					self.y_axis.turn(90)
 ##Main
 try:
 	with open("welcome", "r") as welcome_file:
