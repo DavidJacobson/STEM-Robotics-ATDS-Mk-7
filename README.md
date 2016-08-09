@@ -7,6 +7,13 @@ We were team Turbo Encabulators, inspired by the infamous techno-jargon video.
 Reggie the ATDS (Autmoatic Turret Defense System) was our project for the class. I handled all of the programming
 and a fair amount of the assembly. We met our deadline and were able to present Reggie at the STEM closing ceremony. 
 
+
+If you would like to watch the presentation, click below.
+
+
+[![ATDS Mk.7 Demonstration](https://img.youtube.com/vi/aUrzmkUITlI/0.jpg)](https://www.youtube.com/watch?v=aUrzmkUITlI "CCNY STEM Robotics Demonstration")
+
+
 Reggie moves 180 degrees on the X-axis, stopping every 10 degrees to the check for a target. The assessment is conducted by an ultrasonic
 sensor, which is attached to the nose of the turret. If a target is within firing range, the 2nd servo (the Y-axis servo) will adjust to
 an appropriate height, and begin firing mode. 
