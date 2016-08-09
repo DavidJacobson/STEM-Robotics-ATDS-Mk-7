@@ -11,7 +11,7 @@ and a fair amount of the assembly. We met our deadline and were able to present 
 If you would like to watch the presentation, click below.
 
 
-<a href="https://www.youtube.com/watch?v=aUrzmkUITlI"><img src="https://github.com/DavidJacobson/STEM-Robotics-ATDS-Mk-7/blob/master/turb.PNG" width="600" height="400"></a>
+<a href="https://www.youtube.com/watch?v=aUrzmkUITlI" target="_blank"><img src="https://github.com/DavidJacobson/STEM-Robotics-ATDS-Mk-7/blob/master/turb.PNG" width="600" height="400" alt="CCNY STEM Robotics Demonstration"></a>
 
 
 Reggie moves 180 degrees on the X-axis, stopping every 10 degrees to the check for a target. The assessment is conducted by an ultrasonic
