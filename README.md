@@ -8,7 +8,7 @@ Reggie the ATDS (Autmoatic Turret Defense System) was our project for the class.
 and a fair amount of the assembly. We met our deadline and were able to present Reggie at the STEM closing ceremony. 
 
 
-If you would like to watch the presentation, click below.
+If you would like to watch the presentation, click the image below.
 
 
 <a href="https://www.youtube.com/watch?v=aUrzmkUITlI" target="_blank"><img src="https://github.com/DavidJacobson/STEM-Robotics-ATDS-Mk-7/blob/master/turb.PNG" width="600" height="400" alt="CCNY STEM Robotics Demonstration"></a>
