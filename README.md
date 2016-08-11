@@ -54,7 +54,7 @@ I went through several huge hurdles trying to get the code to function. The firs
 I struggled with cryptic errors before ditching the library and finding work arounds. 
 
 One example of a serious issue was RPi.GPIO's inability to properly control multiple servos. The truth is - I may have been 
-programming them incorrectly, but having the Arduino's API was extremely convenient, as it allowed me to specify the angle I wanted, not just the duty cycle. 
+programming them incorrectly, but having the Arduino's API was extremely convenient, as it allowed me to specify the angle I wanted, not just the duty cycle. PWM (Pulse Width Modulation) can be a nightmare.
 
 ##Assembly
 Our budget was tight, but our expectations were high, so we made due with what we could. Reggie's base was a sheet of cardboard, lathered in hot glue to keep breadboards and a quadpod in place. The quadpod was custom built out of metal elbows and wooden sticks. Originally all the peripherals were powered by the Pi, but when we pulled too much current we had to resort to an external battery pack. We put the high torque motor & Y-axis servo (it was significantly larger) on it. 
